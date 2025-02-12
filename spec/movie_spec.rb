@@ -39,4 +39,11 @@ RSpec.describe MovieLibrary do
       expect(library.search_movie(movie.title)).to eq("ABC")
     end
   end
+
+  describe '#display' do
+    it 'displays all movies in library' do
+      expect(library.add_movie(movie.title))
+      expect(library.display).to eq()
+    end
+  end
 end
