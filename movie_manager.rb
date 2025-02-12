@@ -20,70 +20,27 @@
 # At least two separate PRs: one for the movie class, one for the movie library.
 # The other group should review each PR before merging.
 
-
-
 class Movie
-  attr_accessor :title, :director, :unwatched, :watched
+  attr_accessor :title, :director
+
   def initialize(title, director)
     @title = title
     @director = director
-    @unwatched = []
-    @watched = []
-  end
-
-  def unwatched(movie) #works
-    @unwatched << movie
-    return "#{movie} is unwatched."
-  end
-
-  
-  def watched(movie)
-    if @unwatched.include?(movie)
-      @unwatched.delete(movie)
-      @watched << movie
-      return "#{movie} has been moved from unwatched to watched"
-    else
-      return "#{movie} not found"
-    end
   end
 end
 
-class MovieLibrary < Movie
-  attr_accessor :movie, :movie_library
-  
-  def initialize #(movie)
-    #@movie = movie
-    @movie_library >> @unwatched
+
+class MovieLibrary
+  attr_accessor :movies
+  def initialize
+    @movies = []
   end
-  
+
   def add_movie(movie)
-    if @movie_library.include?(movie)
-      return "Movie already in library."
-    else
-      @movie_library << movie
-      # movie.unwatched(movie)
-      return "#{movie} has been added to movie library."
-    end
+    @movies << movie
   end
-  
-  # def list_um
-  #   return "#{@unwatched.map(&:movie.title).join(', ')}"
-  # end
 
-  def remove(movie)
-    if @movie_library.include?(movie)
-
-      movie_library.delete(movie)
-      return "Movie has been removed from library."
-    end
+  def remove_movie(movie)
+    @movies.delete(movie)
   end
 end
-
-movie = Movie.new("ABC", "DEF")
-puts movie.unwatched(movie.title)
-puts movie.watched(movie.title)
-
-library = MovieLibrary.new
-puts library.add_movie("ABC")
-# puts movie.list_um
-puts movie_library
