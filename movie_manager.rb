@@ -33,22 +33,23 @@ class Movie
 
   def unwatched(movie) #works
     @unwatched << movie
-    puts "#{movie} is unwatched."
+    return "#{movie} is unwatched."
   end
 
   def watched(movie)
     if @unwatched.include?(movie)
       @unwatched.delete(movie)
       @watched << movie
-      puts "#{movie} has been moved from unwatched to watched"
+      return "#{movie} has been moved from unwatched to watched"
     else
-      puts "#{movie} not found"
+      return "#{movie} not found"
     end
   end
 end
 
+
 movie = Movie.new("ABC", "DEF")
-movie.unwatched(movie.title)
-movie.watched(movie.title)
+puts movie.unwatched(movie.title)
+puts movie.watched(movie.title)
 
 
