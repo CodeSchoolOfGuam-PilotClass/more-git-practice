@@ -1,7 +1,6 @@
 class BankAccount
-
-  attr_accessor :owner, :balance, 
-  def initialize (owner)
+  attr_accessor :owner, :balance 
+  def initialize(owner)
       @owner = owner
       @balance = 0
   end
@@ -17,6 +16,7 @@ class BankAccount
       puts "Insufficient funds!"
     end
   end
+
   private
   # Private method: only the class itself can call this
   def sufficient_funds?(amount)
@@ -24,53 +24,74 @@ class BankAccount
   end
 end
 
-savings001 = BankAccount.new("Leon")
-p savings001.deposit(500)
-p savings001.withdraw(300)
-# p savings001.withdraw(1000)
-# p savings001
+ls_account = BankAccount.new("Leon")
+p ls_account.deposit(500)
+p ls_account.withdraw(300)
+# p ls_account 
+
+jf_account = BankAccount.new("Jess")
+p jf_account.deposit(600)
+p jf_account.withdraw(200)
+# p jf_account
+
+np_account = BankAccount.new("Noah")
+p np_account.deposit(2)
+p np_account.withdraw(2)
+
+ch_account = BankAccount.new("Charles")
+p ch_account.deposit(100)
+p ch_account.withdraw(1000)
 
 class BankSystem
-  attr_accessor :owner, :bank_account
+  attr_accessor :list_accounts
 
-  def initialize(owner)
-    @owner = owner
-    @balance = owner.balance
-    @bank_accounts = [] #[savings001 = BankAccount.new("Leon")]
-  end
-  # Public method: anyone can call these
-  
-  def display_account
-    puts "Account owner: #{@owner.owner}"
-    return "Balance: #{@owner.balance}"
+  def initialize
+    @list_accounts = [] 
   end
   
-  def open
-    if @bank_accounts.include?(owner)
-      return "Account already exist #{account}"
+  
+  def add_account(account) #ls_account
+    if @list_accounts.include?(account)
+      puts "Account already exists"
     else
-      @bank_accounts << account
-      # account.open(self)
-      return "Account open. #{bank_accounts}"
+     @list_accounts << account 
+     puts "Added account for #{account.owner}." ##{ls_account.Leon}
+    end
+  end
+  
+  def find_account(owner_name)
+    @list_accounts.find { |account| account.owner == owner_name }
+  end
+
+  def display_account(owner_name)
+    account = find_account(owner_name)
+    if account
+      puts "Account Owner: #{account.owner}"
+      puts "Balance: $#{account.balance}"
+    else
+      puts "Account not found."
     end
   end
 
-  # def close(account)
-  #   if @bank_accounts.include?(account)
-  #     @bank_accounts.delete(account)
-  #     puts "Account closed"
-  #   else
-  #    puts "Account doesn't exist."
-  #   end
-  # end
+  def display_all 
+    # list_accounts
+    # account = []
+    list_accounts.each do |account|
+      puts "Account Owner: #{account.owner}"
+      puts "Balance: $#{account.balance}"
+    end
+  end
+
 end
 
-# leonshimizu = BankAccount.new("Leon")
-# puts leonshimizu.open("savings001")
-# p leonshimizu.deposit(500)
-# p @bank_accounts
-# puts leonshimizu.display_account
-# puts leonshimizu.close("savings001")
-
-test = BankSystem.new(savings001)
-puts test.display_account
+bank_system = BankSystem.new
+bank_system.add_account(ls_account)
+bank_system.display_account("Leon")
+puts "\n "
+bank_system.add_account(jf_account)
+puts "\n "
+bank_system.add_account(np_account)
+puts "\n "
+bank_system.add_account(ch_account)
+puts "\n "
+bank_system.display_all
