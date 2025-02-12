@@ -47,6 +47,21 @@ class Movie
   end
 end
 
+class MovieLibrary < Movie
+  attr_accessor :movie, :movie_library
+  
+  def initialize(movie)
+    @movie = movie
+    @movie_library = []
+  end
+
+  def add_movie(movie)
+    unless @movie_library.include?(movie)
+      @movie_library << movie
+      return "#{movie} has been added to movie library."
+    end
+  end
+end
 
 movie = Movie.new("ABC", "DEF")
 puts movie.unwatched(movie.title)
