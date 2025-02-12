@@ -36,6 +36,7 @@ class Movie
     return "#{movie} is unwatched."
   end
 
+  
   def watched(movie)
     if @unwatched.include?(movie)
       @unwatched.delete(movie)
@@ -50,15 +51,30 @@ end
 class MovieLibrary < Movie
   attr_accessor :movie, :movie_library
   
-  def initialize(movie)
-    @movie = movie
-    @movie_library = []
+  def initialize #(movie)
+    #@movie = movie
+    @movie_library >> @unwatched
   end
-
+  
   def add_movie(movie)
-    unless @movie_library.include?(movie)
+    if @movie_library.include?(movie)
+      return "Movie already in library."
+    else
       @movie_library << movie
+      # movie.unwatched(movie)
       return "#{movie} has been added to movie library."
+    end
+  end
+  
+  # def list_um
+  #   return "#{@unwatched.map(&:movie.title).join(', ')}"
+  # end
+
+  def remove(movie)
+    if @movie_library.include?(movie)
+
+      movie_library.delete(movie)
+      return "Movie has been removed from library."
     end
   end
 end
@@ -67,4 +83,7 @@ movie = Movie.new("ABC", "DEF")
 puts movie.unwatched(movie.title)
 puts movie.watched(movie.title)
 
-
+library = MovieLibrary.new
+puts library.add_movie("ABC")
+# puts movie.list_um
+puts movie_library
