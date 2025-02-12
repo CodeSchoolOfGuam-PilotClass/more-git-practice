@@ -8,20 +8,35 @@ RSpec.describe Movie do
       expect(movie.director).to eq("DEF")
     end
   end
+end
 
-  describe '#unwatched' do
-    it 'pushes movie into unwatched array' do
-      expect(movie.unwatched(movie.title)).to eq("#{movie.title} is unwatched.")
+RSpec.describe MovieLibrary do
+  let(:library) { MovieLibrary.new }
+  let(:movie) { Movie.new("ABC", "DEF") }
+
+  describe '#initalize' do
+    it 'initalizes movie array' do
+      expect(@movie = [])
     end
   end
 
-  describe '#watched' do
-    it 'takes movie out of unwatched array, and put movie into watched array' do
-      expect(movie.unwatched(movie.title))
-      expect(movie.watched(movie.title)).to eq("#{movie.title} has been moved from unwatched to watched")
+  describe '#add_movie' do
+    it 'pushes movie into movie array' do
+      expect(library.add_movie(movie.title)).to eq(["ABC"])
     end
-    it 'does not add a movie to watched unless it is in the unwatched array' do
-      expect(movie.watched(movie.title)).to eq("#{movie.title} not found")
+  end
+
+  describe '#remove_movie' do
+    it 'removes movie from movie array' do
+      expect(library.add_movie(movie.title))
+      expect(library.remove_movie(movie.title)).to eq([])
+    end
+  end
+
+  describe '#search_movie' do
+    it "presents movie title for searched movie" do
+      expect(library.add_movie(movie.title))
+      expect(library.search_movie(movie.title)).to eq("ABC")
     end
   end
 end
