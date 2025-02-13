@@ -56,7 +56,6 @@ class MovieLibrary
     movies.each_with_index do |film, index|
       l_m << "#{index + 1}. #{film}"
     end
-    return l_m
   end
 end
 
