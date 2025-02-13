@@ -42,6 +42,7 @@ class MovieLibrary
 
   def remove_movie(movie)
     @movies.delete(movie)
+    return @movies
   end
 
   def search_movie(movie)
@@ -51,11 +52,12 @@ class MovieLibrary
   end
 
   def display
-    puts "Movie Display:"
+    # puts "Movie Display:"
     l_m = []
     movies.each_with_index do |film, index|
       l_m << "#{index + 1}. #{film}"
     end
+    return l_m
   end
 end
 
@@ -63,6 +65,8 @@ library = MovieLibrary.new
 library.add_movie("Movie name")
 library.add_movie("Movie name2")
 library.add_movie("Sharknado")
-puts library.search_movie("Movie name2")
-puts library.search_movie("Sharknado")
-puts library.display
+# puts library.search_movie("Movie name2")
+# puts library.search_movie("Sharknado")
+# puts library.display
+
+puts library.remove_movie("Movie name")

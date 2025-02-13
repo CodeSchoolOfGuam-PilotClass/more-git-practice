@@ -28,7 +28,7 @@ RSpec.describe MovieLibrary do
 
   describe '#remove_movie' do
     it 'removes movie from movie array' do
-      expect(library.add_movie(movie.title))
+      library.add_movie(movie.title)
       expect(library.remove_movie(movie.title)).to eq([])
     end
   end
@@ -43,7 +43,7 @@ RSpec.describe MovieLibrary do
   describe '#display' do
     it 'displays all movies in library' do
       expect(library.add_movie(movie.title))
-      expect(library.display).to eq()
+      expect(library.display).to eq(["1. ABC"])
     end
   end
 end
