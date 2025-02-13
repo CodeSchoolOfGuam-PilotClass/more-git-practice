@@ -26,17 +26,15 @@ RSpec.describe BankAccount do
         expect(result).to eq(200)
       end
     end 
+
+    context 'if insufficient funds withdraw from balance' do 
+      it 'withdraws from balance' do 
+        ls_account.deposit(300)
+        result = ls_account.withdraw(500)
+        expect(result).to eq("Insufficient funds!")
+      end
+    end 
   end 
 
-  describe '#withdraw' do 
-   
-  context 'if insufficient funds withdraw from balance' do 
-    it 'withdraws from balance' do 
-      ls_account.deposit(300)
-      result = ls_account.withdraw(500)
-      expect(result).to eq("Insufficient funds!")
-    end
-  end 
-end 
 
 end  
