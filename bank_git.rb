@@ -13,7 +13,7 @@ class BankAccount
     if sufficient_funds?(amount)
       @balance -= amount
     else
-      puts "Insufficient funds!"
+      return "Insufficient funds!"
     end
   end
 
