@@ -52,10 +52,10 @@ class BankSystem
   
   def add_account(account) #ls_account
     if @list_accounts.include?(account)
-      puts "Account already exists"
+      return "Account already exists"
     else
      @list_accounts << account 
-     puts "Added account for #{account.owner}." ##{ls_account.Leon}
+     return "Added account for #{account.owner}." ##{ls_account.Leon}
     end
   end
   
